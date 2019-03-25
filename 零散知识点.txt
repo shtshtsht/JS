@@ -1,0 +1,154 @@
+js引擎，chrome  v8   最快
+
+<script type="text/javascript"></script>写在<head>中
+
+在输出内容中用&lt代替<，%gt代替>。
+
+可以引用外部文件，在script标签中加入src=“外部文件路径”。应用外部文件的script，其<script>标签内的代码不会被执行。
+
+用关键字var声明变量，不同类型的变量可以只用一个var在一行中一起声明。
+js中变量被赋值成什么类型就是什么类型，初始string类型被赋值Number就会变成Number类型，可以用（typeof 变量名）查看该变量的数据类型。
+
+js中分母可为零，结果为infinity。
+
+***************************************************************
+ \ 还是转义字符，c中常用转义字符都可以在JS中使用
+
+Number 包括浮点型和整型
+
+typeof（变量名）；返回变量类型名，是个字符串。
+typeof可作为运算符；typeof 变量名；
+
+Number.MAX_VALUE 是Number类型的最大值，不是Infinity，超过这个值就表示Infinity，Infinity表示无穷大
+
+Infinity是字面量，数据类型是Number
+
+NaN，数据类型是Number
+
+Number.MIN_VALUE 是正值的最小值，是可表示大于零的最小正数（小数）
+
+Null类型的值只有null，用来表示一个空对象。
+typeof（null）返回object
+
+Undefined类型的值只有undefined。声明了变量但是未赋值，就是undefined。
+typeof（undefined）返回Undefined
+
+
+类型转换
+1、abc.tostring() 不操作Null和Undefined类型变量
+2、String（abc）可转Null和Undefined，直接变字符串：“null”“undefined”。true变“true”
+3、Number（abc）
+空串和非纯数字的字符串，不能完成转换，返回NaN；
+Boolean转为1和0；
+null转为0；
+undefined转为NaN；
+4、parseInt（）；parseFloat（）；返回值是Number类型；   可作用于String和Number类型
+parseInt（）可提取变量的有效整数位，含字母的字符串字母前的（整数）数字也可被提取。
+parseFloat（）取浮点数，可提取字符串字母前第一个小数。多小数点时，第二个小数点及其之后所有信息都被忽略。12.34.56abc被转为12.34
+对非String类型变量操作时，默认先自动转为String类型，再parse运算
+5、Boolean（）；NaN、0、空串、null、undefined转为false；负值也是true；
+
+
+0x开头表示16进制，0开头表示8进制
+输出时都自动转为10进制输出。
+
+类似“070”的字符串，在parseInt（）解析时候不同浏览器可能结果不同，有的按8进制解析，有的按10进制。
+若统一转为10进制，需要parseInt（"070",10）;
+第二个参数为8，就转为8进制。parseInt（"070",8）;
+
+
+加、减、乘、除
+1、任何值与NaN做运算都是NaN
+2、字符串的 + 表示串拼接
+任何值与串相加，都会变成串拼接。
+变量a + 空串，可把a转为字符串
+result=1+2+“3”；结果是33。同级运算符，从左到右，前两个是Number类型，先数字相加，遇到“3”变“33”
+3、除了在做 加法 时遇到字符串，其他运算（减、乘、除）都默认转为Number类型
+变量a - 0 和 a * 1 和 a / 1，都可以实现向Number类型转换
+
+
++/-  正负
++a，可以把a隐式转为Number类型
++“123”可变为Number型123
+
+自增/减
+表达式（++a）值为a+1
+表达式（a++）值为a
+
+
+逻辑运算
+1、！非运算
+（！！a）  可将a隐式转为其对应布尔值
+2、&& 与运算有返回值
+全ture返回第二个值；
+有false返回第一个false的值；
+3、|| 或运算
+有ture返回第一个true的值；
+全false返回第二个值；
+
+
+关系运算符  
+1、大于 >   小于 <     
+任何类型与Number类型变量进行关系运算，都会先自动转为Number类型；
+任何值与NaN做任何比较都是false；
+两个字符串比较，逐位比较字符的ASC2码，Unicode。
+2、 等于 ==
+布尔 == 字符串  时，都转为Number比较
+字符串1 == 字符串2，逐字符比较ASC2码
+null == 0  时，返回false
+undefined衍生自null，null == undefined， 返回true
+NaN与任何值都不等
+通过isNaN（）；判断变量是不是NaN，是返回true；
+3、全等  ===   ；  不全等 ！==
+不进行自动类型转换，直接比较。类型不同直接返回false
+
+
+Unicode码表，万国码，什么都有。
+1、JS中
+用“\uXXXX”表示这个串的Unicode编码，就可以输出了。
+XXXX是4位16进制Unicode码
+2、HTML中
+&#abc; 这里的abc是10进制的Unicode编码。
+
+
+同级运算符从左往右算。
+
+prompt（）；弹出带有输入框的提示框，返回输入的内容
+
+通过isNaN（）；判断变量是不是NaN，是返回true；
+
+变量a + 空串，可把a转为字符串
+
+变量a - 0 和 a * 1 和 a / 1，都可实现向Number类型转换
+
++a，可以把a隐式转为Number类型
+
+
+JS中 case变量可以是表达式或变量。条件表达式不局限于char型和int型。
+switch（条件表达式）{
+case 1：
+	break;
+default:
+	break;
+}
+
+
+parseInt(number)可以实现对数的取整
+因为Number包含了整型和浮点型，所以除法/不能完成取整操作。需要配合parseInt实现取整。
+
+do{
+表达式；
+}while（条件表达式）；
+别忘了在末尾加分号；
+
+**********************************************
+
+测试运算性能的一种方法
+1、开启计时
+console.time(字符串);
+开启一个计时器，字符串是计时器的对象名。
+2、结束计时
+console.timeEnd(字符串 );
+在控制台能看到对应名字计时器的计时长度。
+
+
