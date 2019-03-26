@@ -1,0 +1,37 @@
+Math不是函数对象，使用时不用创建对象。
+
+常用方法
+1、abs（）
+绝对值
+
+2、ceil（）
+向上取整
+
+3、floor（）
+向下取整
+只对Number处理，性能比parseInt（）高。
+
+4、round（）
+四舍五入
+
+5、random（）
+产生0-1之间的随机数，不包含0和1
+
+10*random（）得到0-10之间的随机数，但是不包括0和10
+
+使用四舍五入，得到包含0和10的结果。  Math.round（10 * Math.random（））
+
+3-10之间的随机数。 Math.round（7 * Math.random（）+3）
+
+X-Y之间的随机数。  Math.round（（Y-X） * Math.random（）+ X）
+
+6、max（num1，num2，num3···） 最大值
+min（num1，num2，num3···）最小值
+
+7、sqrt（）
+开方
+
+8、pow（x，y）
+返回 x 的 y次幂
+
+
