@@ -1,0 +1,52 @@
+元素 . style . 样式名 ="样式值"
+box . style . width = "300px";
+样式值应该是字符串。
+
+如果CSS样式中含有减号 - ，则需要把这种样式名修改为驼峰命名法。
+background-color变为backgroundColor
+
+通过style属性设定的样式，都是内联样式。
+但是如果原始样式中有（！important），则JS修改的样式仍不会生效。尽量不用（！important）
+
+通过style属性读取到的样式，是内联样式。样式表中的样式无法读取。
+
+*****************************************
+操作元素当前显示的样式
+
+元素.currentStyle.样式名【仅ie支持】
+如果当前元素没有设置样式，则获取其默认值。
+
+在其他浏览器中使用getComputedStyle（）方法获取当前样式。【ie8不支持】
+getComputedStyle（元素对象，null）
+返回当前样式的对象。想要获取某个样式，则需要getComputedStyle（元素对象，null）. 样式名
+如果获取到的样式没有设置，则获取当前实际值（主要是默认auto的获取实际值）。
+
+*****************************************
+currentStyle 和 getComputedStyle()读到的样式都是【只读】的。
+
+style属性读到的是可读可写的。
+
+******************************
+返回数值的属性
+
+clientHeight/clientWidth
+值包括（内容区域）和（内边距）
+只读属性
+
+改只能通过style属性改
+
+offsetHeight/offsetWidth
+值包括 内容区 内边距  和  边线
+
+offsetParent
+获取离当前元素最近的开启了定位的祖先元素。position值不是static，就开启了定位。
+如果所有祖先元素都没有开启定位，则返回body
+
+offsetLeft/offsetTop
+返回当前元素相对其定位父元素（offsetParent）的位置偏移量
+
+scrollHeight/scrollWidth
+子元素溢出时， 子元素的完全高度。
+
+scrollLeft/scrollTop
+滚动条移动的距离
