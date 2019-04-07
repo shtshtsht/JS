@@ -14,6 +14,7 @@ var arr = [item1，item2，item3······];
 3、length属性
 可获取长度，也可设置长度
 arr[arr.length]向末尾新增元素
+对于不连续的数组，长度和元素个数不相同，length表示这个arr所占空间的长度
 
 4、push（）
 在末尾添加一个元素，返回新的长度
