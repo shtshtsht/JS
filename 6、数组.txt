@@ -43,7 +43,7 @@ forEach（function（value，index，obj）{}）；
 
 var arr = [11,22,33];
 arr.forEach(function(value, index, obj){
-  console.log("value = "value);//遍历显示arr的每个值
+  console.log(value);//遍历显示arr的每个值
 });
 
 
