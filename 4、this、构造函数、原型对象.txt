@@ -23,6 +23,14 @@ var item = new 构造函数（）；
 3、执行构造函数中的代码。
 4、把新对象作为返回值返回。构造函数中没有return。
 
+//创建Person类的构造函数
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+}
+//创建一个Person类的对象
+var p1 = new Person("小明", 18);
+
 使用同一个构造函数创建的对象，称为一类。（构造函数名）类。Person类。
 使用构造函数创建的对象，称为该类的实例。
 
