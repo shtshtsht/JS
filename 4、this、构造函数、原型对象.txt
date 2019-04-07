@@ -27,6 +27,9 @@ var item = new 构造函数（）；
 function Person(name, age){
   this.name = name;
   this.age = age;
+  this.sayName = function(){
+    alert("这个人的名字是"+this.name);
+  };
 }
 //创建一个Person类的对象
 var p1 = new Person("小明", 18);
@@ -43,6 +46,10 @@ item instanceof class
 
 所有对象都是Object类的实例。
 
+//创建一个Person类的对象
+var p1 = new Person("小明", 18);
+var p2 = new Person("小华", 20);
+显然p1和p2在创建时都各自创建了一个sayName函数
 
 构造函数中的方法如果在构造函数内部定义，那么每创建一个新对象实例就会创建一次这个方法，（每个对象实例的这个方法”不“是同一个方法）。
 构造函数中的方法应该在外部创建，在创建对象实例时，用这个方法对每个对象实例的方法进行赋值。这样每个对象实例的这个方法就是同一个方法。
