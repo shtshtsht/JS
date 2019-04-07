@@ -61,7 +61,7 @@ var p2 = new Person("小华", 20);
 在联合开发项目中，函数可能因为重名而被覆盖，导致失效。
 
 *********************************************************************
-原型对象 prototype (继承？)
+原型对象 prototype （父类？继承？静态成员变量？）
 
 每创建一个函数，解析器都会向函数中添加一个属性 prototype，每个函数的prototype是特有的（唯一的）。
 
@@ -69,7 +69,7 @@ prototype对应的对象就是原型对象。
 
 prototype保存的是原型对象的地址。
 
-当函数作为构造函数使用时，他所创建的对象中都会包含一个prototype（每个prototype和构造函数的prototype都一样），指向该构造函数的原型对象。
+当函数作为构造函数使用时，他所创建的对象中都会包含一个prototype（每个对象实例的prototype和构造函数的prototype都一样），指向该构造函数的原型对象。
 可以通过 __proto__访问这个属性。
 
 原型对象相当于（这个类）的一个公共的区域，所有（这个类）的实例都可以访问到这个原型对象。
@@ -78,14 +78,29 @@ prototype保存的是原型对象的地址。
 当访问对象实例的属性和方法时，先在实例自身中寻找，如果没找到，则到原型对象中寻找。
 
 可以把对象实例共有的属性和方法统一放在原型对象中。
+这样，可以保证这个属性或方法只被创建一次，且不会影响到全局作用域。
 
 添加方式：
 类名.prototype.属性名 = 赋值
 类名.prototype.方法名 = function（）{}
 使用this关键字访问。
 
-使用hasOwnProterty（）方法检查自己是否含有某属性
-使用in方法检查，原型中含有也会返回true。
+//创建Person类的构造函数
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+}
+//在Person类的原型中添加sayName方法
+Person.prototype.sayName = function(){
+  alert("这个人的名字是"+this.name);
+}
+//创建一个Person类的对象
+var p1 = new Person("小明", 18);
+p1.sayName();
+语句执行时，显然p1中没有sayName方法，所以到Person类的原型中找这个方法进行调用。
+
+使用hasOwnProterty（）方法检查对象自身中是否含有某属性
+使用in方法检查，原型中含时有也会返回true。
 
 原型对象当然还有自己的原型对象
 
