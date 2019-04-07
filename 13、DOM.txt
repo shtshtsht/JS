@@ -187,12 +187,12 @@ document.querySelectorAll()
 
 1、appendChild（）
 给指定的父节点添加子节点
-父节点 . appendChild（子节点）
+父节点 . appendChild（子节点对象）
 
 2、removeChild()
 删除子节点。
-父节点 . removeChild(子节点)
-常用方法：子节点 . parentNode . remoaveChild(子节点)
+父节点 . removeChild(子节点对象)
+常用方法：子节点 . parentNode . remoaveChild(子节点对象)
 
 3、replaceChild()
 替换子节点。
