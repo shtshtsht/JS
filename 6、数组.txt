@@ -41,6 +41,11 @@ forEach（function（value，index，obj）{}）；
 数组中有几个元素，function就被调用几次。每次执行时，浏览器会将遍历到的元素以实参形式传递进来。定义function的形参就可以读取这些元素。
 回调函数中会传入三个参数，第一个是当前被遍历的元素值，第二个是索引号，第三个是正在遍历的数组
 
+var arr = [11,22,33];
+arr.forEach(function(value, index, obj){
+  console.log("value = "value);//遍历显示arr的每个值
+});
+
 
 9、slice（start,end）
 从数组中提取指定的一段，包含start，不含end。
