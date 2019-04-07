@@ -44,12 +44,12 @@ nodeValue：文本内容
 文档节点对象document，由浏览器提供，是window的一个属性。
 
 1、找元素
-例：找个id为btn的按钮
-document.getElementById("btn")；
+例：获取id为btn的元素
+var myBtn = document.getElementById("btn")；
 
 2、改属性
-例：改btn内部的HTML代码，即改文字显示
-btn.innerHTML = “新文字”；
+例：改btn内部的HTML代码，对于按钮就是修改文字显示
+myBtn.innerHTML = “新文字”；
 
 ***************************************************
 事件
