@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var p = document.getElementById("info");
+				var inputs = document.getElementsByTagName("input");
+				
+				p.onscroll = function(){
+					if(p.scrollHeight - p.scrollTop == p.clientHeight){
+						inputs[0].disabled = false;
+						inputs[1].disabled = false;
+					}
+				};
+			};
+		</script>
+		
+		<style type="text/css">
+			#info{
+				width: 300px;
+				height: 400px;
+				overflow: auto;
+				border: solid black 1px;
+				margin: 10px auto;
+				background-color: antiquewhite;
+				
+			}
+			div{
+				width: 400px;
+				margin: 0 auto;
+				text-align: center;
+				border: solid black 1px;
+				padding-bottom: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<h3>注册协议</h3>
+			<p id="info">
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明请仔细阅读以下条款，免责声明
+				
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+				请仔细阅读以下条款，免责声明
+			</p>
+			<input type="checkbox" disabled="disabled">我已仔细阅读上述协议
+			<input type="submit" value="注册" disabled="disabled"/>
+		</div>
+	</body>
+</html>
