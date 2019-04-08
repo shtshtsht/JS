@@ -1,6 +1,6 @@
 元素 . style . 样式名 ="样式值"
-box . style . width = "300px";
-样式值应该是字符串。
+元素对象 . style . width = "300px";
+样式值应是字符串。
 
 如果CSS样式中含有减号 - ，则需要把这种样式名修改为驼峰命名法。
 background-color变为backgroundColor
@@ -13,13 +13,19 @@ background-color变为backgroundColor
 *****************************************
 操作元素当前显示的样式
 
-元素.currentStyle.样式名【仅ie支持】
+元素对象.currentStyle.样式名【仅ie支持】
 如果当前元素没有设置样式，则获取其默认值。
 
-在其他浏览器中使用getComputedStyle（）方法获取当前样式。【ie8不支持】
+在其他浏览器中使用getComputedStyle（元素对象）方法获取当前样式。【ie8不支持，ie9及以上支持】
 getComputedStyle（元素对象，null）
-返回当前样式的对象。想要获取某个样式，则需要getComputedStyle（元素对象，null）. 样式名
+返回当前样式的对象。
+想要获取某个样式，则需要getComputedStyle（元素对象，null）. 样式名
 如果获取到的样式没有设置，则获取当前实际值（主要是默认auto的获取实际值）。
+
+自定义获取当前样式的函数，兼容ie8和chrome以及firefox
+function getStyle（元素对象，样式名）{
+  return window.getComputedStyle ? getComputedStyle（元素对象，null）[样式名] : 元素对象.currentStyle[样式名];
+}
 
 *****************************************
 currentStyle 和 getComputedStyle()读到的样式都是【只读】的。
@@ -27,19 +33,23 @@ currentStyle 和 getComputedStyle()读到的样式都是【只读】的。
 style属性读到的是可读可写的。
 
 ******************************
-返回数值的属性
+元素的属性
+返回的是数值，可以直接进行计算，不带px单位
 
 clientHeight/clientWidth
-值包括（内容区域）和（内边距）
-只读属性
-
+元素的可见高度/宽度
+元素对象.ClientHeight
+值包括（内容区域content）和（内边距padding），不含border
+只读
 改只能通过style属性改
 
 offsetHeight/offsetWidth
-值包括 内容区 内边距  和  边线
+值包括 content padding 和 border
 
 offsetParent
-获取离当前元素最近的开启了定位的祖先元素。position值不是static，就开启了定位。
+元素对象.offsetParent
+获取离当前元素最近的开启了定位的祖先元素。
+position值不是static，就开启了定位。
 如果所有祖先元素都没有开启定位，则返回body
 
 offsetLeft/offsetTop
@@ -49,4 +59,9 @@ scrollHeight/scrollWidth
 子元素溢出时， 子元素的完全高度。
 
 scrollLeft/scrollTop
-滚动条移动的距离
+滚动条当前位置相对于起始位置移动的距离
+
+常用于强制性查看责任声明文档
+当 scrollHeight - scrollTop = clientHeight
+滚动条到底了
+
