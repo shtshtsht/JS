@@ -95,18 +95,37 @@ function bind（obj，eventStr，callback）{
 addEventListener(事件字符串，回调函数，true)
 第三个参数设置为true，则捕获阶段就会触发事件
 
+***********************************************
 
+事件的默认行为，可以在事件所绑定的回调函数中 使用return false；取消
 
+***********************************************
+onmousewheel 鼠标滚轮滚动事件
 
+火狐不支持
+火狐中使用DOMMouseScroll 绑定鼠标滚轮滚动事件，且【必须】使用addEventListener（）添加绑定
 
+wheelDelta 滚轮滚动方向，上正，下负。
+火狐中用detail，上负，下正。
 
+对于使用addEventListener（）添加的绑定，要使用 preventDefault（）方法取消默认行为。（ie8不支持）
+其他，使用return false；就可以取消默认行为
 
+************************************************
+键盘事件
 
+键盘事件通常绑定给可以获取焦点的事件或document对象
 
+onkeydown
+按键不松开，事件会被连续触发。
+连续触发时，第一次和第二次之间会有一个小的默认时间间隔，防止误操作。
 
+onkeyup 
 
+event的keyCode属性，获取按键对应的unicode编码，可判断哪个按键被按下
+altKey ctrlKey shiftKey 三个属性用于单独判断这三个功能键，按下返回true
 
-
+在input text 中 onkeydown 默认行为是在文本框中显示按下的按键，使用return false 可取消；
 
 
 
