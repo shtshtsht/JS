@@ -1,0 +1,78 @@
+浏览器对象模型，browser object module
+
+通过JS操作浏览器
+
+BOM对象：
+1、window：整个浏览器窗口，是网页的全局对象
+2、navigator：当前浏览器信息，可用于识别不同的浏览器
+3、location：当前浏览器地址栏新信息，通过地址栏可以跳转页面
+4、history：浏览器历史记录，只能操作浏览器向前或向后翻页，
+			不能访问具体历史记录。
+5、screen：用户的屏幕相关信息（移动端多用）
+
+BOM对象都作为window对象的属性保存，可通过window对象使用，
+也可以直接使用 
+
+********************************************
+navigator对象
+ 
+由于历史原因，navigator大部分属性都不能用于正确识别浏览器了
+
+一般只用userAgent判断浏览器信息，返回的是一个字符串
+
+用正则表达式判断
+var ua = navigator.userAgent;
+if（/firefox/i.test(us)）  //判断是火狐
+火狐 chrome ie8-10 都可用，
+ie11已经不能判断了
+
+如果不能使用userAgent判断，则只能通过浏览器特有的对象进行判断
+如ActiveXObject对象
+应当使用 ”ActiveXObject“ in window 语句进行判断
+
+//所有浏览器的识别
+var ua = navigator.userAgent;
+if（/firefox/i.test(us)）  //火狐
+if（/chrome/i.test(us)）  //谷歌
+if（/msie/i.test(us)）  //ie低版本
+if（”ActiveXObject“ in window） //ie11
+
+************************************************
+history对象
+
+1、length
+返回当前浏览器中历史页面的数量
+浏览器关闭后会重置
+
+2、back（）
+返回上一个页面，后退
+
+3、forward（）
+跳转下一个页面，前进
+
+4、go（整数）
+跳转指定页面，
+go（n） 表示跳转n个页面，正前跳，负后跳
+
+***************************************************
+location对象
+
+直接打印location，得到当前页面完整地址
+
+可直接赋值路径进行跳转
+可以是绝对路径：location = “www.baidu.com”
+也可以是相对路径：
+
+location的各个属性可获取端口号、协议等信息
+
+1、assign（）
+用来跳转到其他页面，和直接修改location相同
+location.assign(“www.baidu.com”)
+
+2、reload（）
+重新加载当前页面，刷新
+传入true，强制清空缓存刷新
+
+3、replace（）
+用其他页面替换当前页面，不会生成历史记录
+
