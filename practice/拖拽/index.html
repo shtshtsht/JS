@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 拖拽 任务流程
+				1、鼠标按下时开始拖拽 onmousedown
+				2、鼠标移动时，元素跟随移动 onmousemove
+				3、鼠标松开，元素被固定在新位置，拖拽停止 onmouseup
+				
+				三步，对应三个事件
+			 */
+			window.onload = function(){
+				/* 给box绑定onmousedow */
+				var box1 = document.getElementById("box1");
+				var box2 = document.getElementById("box2");
+				drag(box1);
+				drag(box2);
+			};
+			//拖拽函数
+			function drag(obj){
+				obj.onmousedown = function(){
+					//解决点击时位置跳变问题
+					var varLeft = event.clientX - obj.offsetLeft;
+					var varTop = event.clientY - obj.offsetTop;
+					
+					//给document绑定onmousemove
+					document.onmousemove = function(event){
+						event = event || window.event;
+						//跟随鼠标移动
+						obj.style.left = event.clientX - varLeft + "px";
+						obj.style.top = event.clientY - varTop + "px";
+					};
+					//鼠标松开时固定元素
+					document.onmouseup = function(){
+						//取消document的鼠标移动事件
+						document.onmousemove = null;
+						//鼠标松开后 onmouseup事件不再被需要,应该取消
+						document.onmouseup = null;
+					};
+					
+					/* 当拖拽网页中的内容时，浏览器会自动搜索被拖拽的内容 会影响鼠标拖拽行为，
+						可以在onload中添加 return false 取消默认的拖拽搜索行为
+						ie8不起作用
+					*/
+					return false;
+					
+					/* 
+						ie8中可用下述方法，chrome中不存在这个方法
+						用if（元素.setCapture）进行判断
+						使用 元素.setCapture() 方法，
+						会强制绑定下【一次】鼠标点击事件。
+						网页的点击跳转流氓广告设置方法
+						在onmousedown时调用setcapture（）
+						在onmouseuo时释放，releasecapture（）
+					 */
+				};
+			}
+			
+			
+		</script>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: red;
+			}
+			#box2{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: blue;
+				left:200px;
+				top:200px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>测试</p>
+		<div id="box1"></div>
+		<div id="box2"></div>
+	</body>
+</html>
