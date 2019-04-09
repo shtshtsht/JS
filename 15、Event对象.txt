@@ -40,24 +40,49 @@ target表示触发事件的对象
 ***************************************************
 事件的绑定
 
+对一个事件绑定多个响应函数不能使用 对象.事件 = 函数 的形式，因为这种形式为函数赋值，后面的赋值会覆盖前面的赋值
 
+使用addEventListener(事件字符串，回调函数，false)方法（ie8不支持）
+参数1：事件字符串，不用 on 前缀
+参数2：事件出发时调用的函数
+参数3：是否在捕获阶段触发事件，布尔值，一般传false
+this,是绑定事件的对象
 
+当添加多个时
+btn.addEventListener("click"，fun1，false)
+btn.addEventListener("click"，fun2，false)
+btn.addEventListener("click"，fun3，false)
+onclick事件触发时，按照 1 2 3 ，fun1,fun2,fun3顺序执行回调函数
 
+ie8及以下
+attachEvent(事件字符串，回调函数)
+参数1：需要写 on 前缀
+参数2：回调函数
+this，是window
 
+btn.attachEvent("click"，fun1)
+btn.attachEvent("click"，fun2)
+btn.attachEvent("click"，fun3)
+执行时顺序为，3 2 1 ，fun3，fun2，fun1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+自定义具有兼容性的绑定方法 bind
+obj 要绑定事件的对象
+eventStr 事件字符串(不要on)
+callback 回调函数
+function bind（obj，eventStr，callback）{
+  if(obj.addEventListener){
+    //chrome和火狐等兼容
+    obj.addEventListener(eventStr，callback，false);
+  }
+  else{
+    //this 是谁，由函数的调用方式决定
+    //默认callback由浏览器调用，使用回调函数可收回调用权限
+    //ie8及以下
+    obj.attachEvent("on"+eventStr，function（）{
+      callback.call(obj);
+    });
+   }
+}
 
 
 
