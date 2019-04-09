@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		window.onload = function(){
+			var b = document.getElementById("b");
+			/* 把事件绑定给页面 */
+			document.onmousemove = function(ev){
+				/* cientX属性得到的是个数值，没有带px单位 */
+				/* clientX和clientY 获取的是相对于当前窗口的坐标 
+					div定位相对于html，当网页竖直方向出现滚动条，
+					div定位原点与鼠标位置原点就产生了偏差
+				*/
+				/* 
+				b.style.left = ev.clientX+"px";
+				b.style.top = ev.clientY+"px"; */
+				
+				/* 换用pageX属性 */
+				/* ie8 不支持*/
+				/* b.style.left = ev.pageX+"px";
+				b.style.top = ev.pageY+"px"; */
+				
+				/* 使用clientX + scrollTop 可以获得相同效果
+				 chrome认为滚动条属于body，document.body.scrollTop
+				 火狐 ie 认为滚动条属于html，document.documentElement.scrollTop
+				 */
+				b.style.left = ev.clientX+"px";
+				b.style.top = ev.clientY + (document.documentElement.scrollTop||document.body.scrollTop) +"px";
+				
+				/* 水平方向的滚动条处理方法相同 */
+			};
+		};
+	</script>
+	
+	<style type="text/css">
+		#b{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			/* 开启定位 */
+			position: absolute;
+		}
+		body{
+			height: 5000px;
+		}
+	</style>
+	<body >
+		<div id="b">
+			
+		</div>
+	</body>
+</html>
