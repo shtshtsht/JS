@@ -1,0 +1,31 @@
+JSON定义
+JavaScript Object Notation
+
+JSON,就是一个特殊格式的字符串
+所有语言都可以识别，并将其转换为对象
+主要用于数据交换
+
+JSON和JS对象的格式一样，但属性名必须加“”变字符串
+
+JSON分类：
+1、对象{}
+var obj = '{"name":"张三"，"age":"12","gender":"男"}'；
+2、数组[]
+var arr = '[12,"hello","world",true]';
+
+JSON中允许的值（6种）：
+字符串；数值；布尔值；null；对象；数组；
+
+******************************************
+JSON类
+
+可实现JS对象和JSON之间的转换
+
+JSON转为JS对象
+JSON.parse(json);
+返回值为JS对象
+
+JS对象转为JSON
+JSON.stringify(obj)；
+返回JSON字符串
+
