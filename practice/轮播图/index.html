@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#outer{
+			width: 500px;
+			height: 400px;
+			background-color: antiquewhite;
+			margin: 50px auto;
+			padding: 20px;
+			border: solid black 3px;
+			position: relative;
+			overflow: hidden;
+		}
+		img{
+			width: 500px;
+			height: 400px;
+		}
+		#imgList{
+			list-style: none;
+			/* 在JS中设置宽度为好，可以根据图片张数自动变更宽度 */
+			/* width: 1620px; */
+			position: absolute;
+		}
+		li{
+			float: left;
+			margin: 0 20px;
+		}
+		#navDiv{
+			position: absolute;
+			margin: 0 auto;
+			opacity: 0.8;
+			bottom: 20px;
+		}
+		#navDiv a{
+			float: left;
+			width: 15px;
+			height: 15px;
+			margin: 0 5px;
+			background-color: yellow;
+		}
+		#navDiv a:hover{
+			background-color: red;
+		}
+	</style>
+	<script type="text/javascript" src="js/tool.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var imgList = document.getElementById("imgList");
+			var imgArr = ["img/f1.jpg","img/f2.jpg","img/f3.jpg","img/f1.jpg"];
+			/* 设置宽度 */
+			imgList.style.width = 540 * imgArr.length + "px";
+			
+			/* 设置导航按钮居中 */
+			var navDiv = document.getElementById("navDiv");
+			var outer = document.getElementById("outer");
+			navDiv.style.left = (outer.offsetLeft - navDiv.offsetWidth)/2+"px";
+			
+			/* 设置导航按钮默认选中样式 */
+			var index = 0;
+			var allA = document.getElementsByTagName("a");
+			allA[index].style.backgroundColor = "red";
+			
+			/* 点击超链接 显示对应图片 */
+			for(var i = 0; i < allA.length; i++){
+				//添加num属性，给每一个超链接绑定自己的编号
+				allA[i].num = i;
+				allA[i].onclick = function(){
+					//点击应比自动轮播具有更高的优先级
+					//点击就把自动的定时器屏蔽掉,
+					//完成点击效果后,可以使用move中的回调函数打开自动轮播
+					clearInterval(timer);
+					
+					index = this.num;
+					//切换图片
+					move(imgList,"left",-540*index,50,autoChange);
+					//修改导航条显示
+					setA();
+					
+					
+					return false;
+				};
+			}
+			autoChange();
+			
+			//导航块背景色设置函数
+			function setA(){
+				if(index >= imgArr.length -1){
+					index=0;
+					/* 从最后一张切换到第一张 */
+					imgList.style.left=0;
+				}
+				
+				for(var i = 0; i < allA.length; i++){
+					//JS设置的是内联样式,会覆盖样式表中的hover功能背景色
+					//这里设置空串,相当于清楚了内联样式中的背景色,保证样式表中的样式得以使用
+					allA[i].style.backgroundColor="";
+				}
+				allA[index].style.backgroundColor="red";
+			}
+			
+			//用于开启自动切换图片
+			var timer;
+			function autoChange(){
+				timer = setInterval(function(){
+					
+					if(++index > imgArr.length-1){
+						index=0;
+					}
+					move(imgList,"left",-540*index,50,function(){
+						setA();
+					});
+				},2000);
+			}
+			
+			
+		};/* window */
+	</script>
+	<body>
+		<div id="outer">
+			<ul id="imgList">
+				<li>
+					<img src="img/f1.jpg" >
+				</li>
+				<li>
+					<img src="img/f2.jpg" >
+				</li>
+				<li>
+					<img src="img/f3.jpg" >
+				</li>
+				<!-- 最后一张与第一张相同，设置轮播效果 -->
+				<li>
+					<img src="img/f1.jpg" >
+				</li>
+			</ul>
+			<!-- 导航按钮 -->
+			<div id="navDiv">
+				<a href="">m</a>
+				<a href="">m</a>
+				<a href="">m</a>
+			</div>
+		</div>
+	</body>
+</html>

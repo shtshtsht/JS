@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.getElementById("box");
+			var speed = 10;
+			var dir = 0;
+			//控制方向
+			setInterval(function(){
+				switch(dir){
+					//左 上 右 下 
+					case 37:
+						box.style.left = box.offsetLeft - speed + "px";
+						break;
+					case 38:
+						box.style.top = box.offsetTop - speed + "px";
+						break;
+					case 39:
+						box.style.left = box.offsetLeft + speed + "px";
+						break;
+					case 40:
+						box.style.top = box.offsetTop + speed + "px";
+						break;
+				}
+			},30);
+			
+			document.onkeydown = function(event){
+				event = event || window.event;
+				if(event.ctrlKey){
+					speed=30;
+				}
+				else{
+					speed=10;
+				}
+				dir = event.keyCode;
+			};
+			document.onkeyup = function(event){
+				event = event || window.event;
+				dir=0;
+			};
+		};
+	</script>
+	
+	<style type="text/css">
+		#box{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			background-color: red;
+		}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+</html>

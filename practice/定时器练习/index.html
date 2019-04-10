@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#box1 {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			/* 对于ie浏览器，没有指定的值都为auto 无法进行计算 */
+			left: 0;
+		}
+
+		#box2 {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			position: absolute;
+			/* 对于ie浏览器，没有指定的值都为auto 无法进行计算 */
+			left: 0;
+			top: 200px;
+		}
+
+		.d {
+			width: 0;
+			height: 1000px;
+			border: solid black 1px;
+			position: absolute;
+			left: 600px;
+			top: 0;
+		}
+	</style>
+	<script type="text/javascript" src="js/tool.js">
+		<!-- 调用外部定义的JS文件 -->
+	</script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var box1 = document.getElementById("box1");
+			var box2 = document.getElementById("box2");
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			var btn3 = document.getElementById("btn3");
+			var btn4 = document.getElementById("btn4");
+			btn1.onclick = function() {
+				move(box1, "left", 600, 15);
+			};
+			//左移
+			btn2.onclick = function() {
+				move(box1, "left", 0, 10);
+			};
+			btn3.onclick = function() {
+				move(box2, "left", 600, 10);
+			};
+			btn4.onclick = function() {
+				move(box2, "width", 600, 10, function() {
+					move(box2, "height", 600, 10, function() {
+						move(box2, "top", 600, 10, function() {
+
+						});
+					});
+				});
+			};
+		};
+
+	</script>
+	<body>
+		<button type="button" id="btn2">红色左移</button>
+		<button type="button" id="btn1">红色右移</button>
+		<button type="button" id="btn3">蓝色右移</button>
+		<button type="button" id="btn4">回调功能测试</button>
+		<br><br>
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<div class="d"></div>
+	</body>
+</html>
