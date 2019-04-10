@@ -1,0 +1,50 @@
+使用JS操作style属性改变CSS样式的方法有缺点：
+1、每修改一个样式，浏览器就重新渲染一次页面，性能较差
+2、修改多个样式时操作繁琐
+3、JS直接修改CSS，行为和表现耦合了
+
+把样式编写为多个class，修改class即可修改显示的样式
+不需要重新渲染页面，且行为和表现分离
+
+**************************************
+/*向一个元素中添加指定class
+参数：
+	obj：目标元素
+	cn：添加的class值
+*/
+function addClass(obj,cn){
+	obj.className += " " + cn;
+}
+
+/*判断一个元素中是否含有指定的class
+参数：
+	obj：元素
+	cn：class值
+*/
+function hasClass(obj,cn){
+	var reg = new RegExp("\\b"+cn+"\\b");
+	return reg.test(obj.className);
+}
+
+/*删除元素中的指定class
+参数：
+	obj：元素
+	cn：class值
+*/
+function removeClass(obj,cn){
+	var reg = new RegExp("\\b"+cn+"\\b");
+	obj.className = obj.className.replace(reg,"");
+}
+
+/*切换,有则删除，没有则添加
+参数：
+	obj：元素
+	cn：class值
+*/
+function toggleClass(obj,cn){
+	if(hasClass(obj,cn)){
+		removeClass(obj,cn);
+	}else{
+		addClass(obj,cn);
+	}
+}
